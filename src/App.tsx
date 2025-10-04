@@ -11,11 +11,29 @@ import band6 from "./assets/band6.jpg";
 import band7 from "./assets/band7.jpg";
 import AngleLeftIcon from "./assets/angle-left.tsx";
 import AngleRightIcon from "./assets/angle-right.tsx";
+import SunIcon from "./assets/sun.tsx";
+import MoonIcon from "./assets/moon.tsx";
 
 function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [mobileTktSubMenuOpen, setMobileTktSubMenuOpen] = useState(false);
   const carouselEle = useRef<HTMLDivElement>(null);
+  const initTheme = window.matchMedia(`(prefers-color-scheme: dark)`).matches;
+  const darkMode = useRef(initTheme);
+
+  const setTheme = (isDark: boolean) => {
+    if (isDark)
+      document.documentElement.classList.add("dark");
+    else
+      document.documentElement.classList.remove("dark");
+  }
+
+  setTheme(darkMode.current);
+  const toggleDarkMode = () => {
+    darkMode.current = !darkMode.current;
+    setTheme(darkMode.current);
+  }
+
   const scrollHeadlinerCarousel = (isRight: boolean) => {
     if (carouselEle.current && carouselEle.current.hasChildNodes()) {
       if (isRight)
@@ -26,9 +44,13 @@ function App() {
   }
 
   return (
-    <>
+    <main className="text-zinc-900 bg-white dark:text-zinc-200 dark:bg-zinc-900">
       <header className="text-pink-100">
-        <nav className="sticky top-0 flex bg-gradient-to-r from-rose-500 to-pink-500">
+        <div onClick={toggleDarkMode} className="fixed top-24 right-0 p-2 text-3xl inline-block w-12 rounded-l-lg cursor-pointer bg-zinc-900 text-zinc-200 dark:bg-zinc-200 dark:text-zinc-900">
+          <SunIcon className="size-8 hidden dark:block" />
+          <MoonIcon className="size-8 block dark:hidden" />
+        </div>
+        <nav className="sticky top-0 flex z-10 bg-gradient-to-r from-rose-500 to-pink-500">
           <div className="flex items-center p-2">
             <img src={logoInvertenIcon} width={50} />
             <div className="font-bold text-2xl">
@@ -161,7 +183,7 @@ function App() {
           </div>
         </div>
       </section>
-    </>
+    </main>
   )
 }
 

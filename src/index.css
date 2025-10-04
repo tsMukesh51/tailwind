@@ -71,6 +71,8 @@
   animation-delay: --value([*]);
 }
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @custom-variant group-open {
   &:is(:where(.group):is(.open, [open], :popover-open, :open) *) {
     @slot
