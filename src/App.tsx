@@ -157,7 +157,7 @@ function App() {
           </form>
         </div>
       </header>
-      <section className="mx-auto mt-20 max-w-screen-lg">
+      <section className="mx-auto mt-20 container">
         <h2 className="">
           <span className="text-transparent bg-gradient-to-r from-cyan-500 to-pink-500 bg-clip-text">
             Headliners
@@ -170,12 +170,12 @@ function App() {
         </p>
         <div className="flex">
           <div
-            className="flex items-center justify-center p-2 cursor-pointer relative -top-8"
+            className="hidden md:flex items-center justify-center p-2 cursor-pointer relative -top-8"
             onClick={() => scrollHeadlinerCarousel(false)}
           >
             <AngleLeftIcon className="size-16" />
           </div>
-          <div>
+          <div className="w-full">
             <div
               ref={carouselEle}
               className="flex flex-1 gap-4 w-full mt-4 pb-5 overflow-x-auto scroll-smooth snap-x"
@@ -239,7 +239,7 @@ function App() {
             </div>
           </div>
           <div
-            className="flex items-center justify-center p-2 cursor-pointer relative -top-8"
+            className="hidden md:flex items-center justify-center p-2 cursor-pointer relative -top-8"
             onClick={() => scrollHeadlinerCarousel(true)}
           >
             <AngleRightIcon className="size-16" />
@@ -290,12 +290,13 @@ function App() {
           </div>
         </div>
       </section>
-      <section className="mx-auto mt-20 max-w-screen-lg">
+      <section className="mx-auto mt-20 @container">
         <h2>Tickets</h2>
         <table className="mt-5 table w-full border border-zinc-500 border-collapse">
           <thead>
             <td className="text-lg font-bold p-3">Ticket</td>
             <td className="text-lg font-bold p-3">Price</td>
+            <td className="w-[150px] @max-xl:hidden">Act</td>
           </thead>
           <tbody>
             <tr>
@@ -303,10 +304,20 @@ function App() {
                 Single Day Ticket
               </td>
               <td className="border border-zinc-500 py-2 px-3">$60</td>
+              <td className="border border-zinc-500 py-2 px-3 @max-xl:hidden">
+                <button className="p-2 bg-pink-500 cursor-pointer text-zinc-200 rounded-md">
+                  Buy Now
+                </button>
+              </td>
             </tr>
             <tr>
               <td className="border border-zinc-500 py-2 px-3">7 Day Ticket</td>
               <td className="border border-zinc-500 py-2 px-3">$200</td>
+              <td className="border border-zinc-500 py-2 px-3 @max-xl:hidden">
+                <button className="p-2 bg-pink-500 cursor-pointer text-zinc-200 rounded-md">
+                  Buy Now
+                </button>
+              </td>
             </tr>
           </tbody>
           <caption className="caption-bottom">
